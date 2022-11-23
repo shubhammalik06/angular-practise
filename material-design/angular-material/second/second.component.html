@@ -1,0 +1,35 @@
+<div class="col-md-12">
+  <div class="mat-display-1">Auto Populated Form Data</div>
+
+  <mat-divider></mat-divider>
+
+  <mat-card>
+    <form [formGroup]="myForm" class="example-form">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Full Name</mat-label>
+        <input matInput type="text" formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Countries</mat-label>
+        <input type="text" matInput formControlName="countryDropdown" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>States</mat-label>
+        <input type="text" matInput formControlName="stateDropdown" />
+      </mat-form-field>
+    </form>
+  </mat-card>
+
+  <!-- <mat-divider></mat-divider>
+
+    <button mat-raised-button color="primary">
+        <a class="nav-link" href="#" [routerLink]="['/dropdown']">Back</a>
+    </button> -->
+</div>

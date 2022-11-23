@@ -1,3 +1,3 @@
 export interface AuthState {}
 
-export const initialState : AuthState = {}
+export const initialState: AuthState = {};

@@ -1,25 +1,31 @@
-import { Injectable  } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
-import { EmailValidator } from "@angular/forms";
-import { interval, map, merge, mergeAll, mergeMap, Subscribable, Subscription, take, tap } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
-    providedIn : 'root'
+  providedIn: "root",
 })
+export class AuthService {
+  constructor(private http: HttpClient) {}
 
-export class AuthService{
+  login(email: string, password: string) {
+    return this.http.post("https://dummy.restapiexample.com/api/v1/create", {
+      data: {
+        name: email,
+        age: password,
+      },
+    });
+  }
 
-    constructor(private http: HttpClient){
-
+  getErrorMessages(message: string) {
+    switch (message) {
+      case "EMAIL_NOT_FOUND":
+        return "Email not found";
+      case "INVALID_PASSWORD":
+        return "Invalid Password";
+      case "TOO_MANY_ATTEMPTS":
+        return "Too Many Attempts.";
+      default:
+        return message;
     }
-
-    login(email:string, password:string){
-       return this.http.post('https://dummy.restapiexample.com/api/v1/create', {
-        data : {
-            name : email,
-            age : password
-        }
-       });
-    }
+  }
 }
-

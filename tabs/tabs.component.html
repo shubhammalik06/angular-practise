@@ -1,0 +1,25 @@
+<mat-tab-group mat-align-tabs="center" preserveContent>
+    <mat-tab label="First">
+        <app-reactive-forms (showTab)="showTabOnSubmit($event)"></app-reactive-forms>
+    </mat-tab>
+
+    <mat-tab label="Second">
+        <ng-template matTabContent>
+            <app-login></app-login>
+        </ng-template>
+    </mat-tab>
+
+    <mat-tab label="Third">
+        <ng-template matTabContent>
+            <app-counter></app-counter>
+        </ng-template>
+    </mat-tab>
+
+    <mat-tab *ngIf="tabHidden" label="Fourth">
+        <ng-template matTabContent>
+           <app-posts></app-posts>
+        </ng-template>
+    </mat-tab>
+
+    
+</mat-tab-group>

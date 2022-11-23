@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="row row-margin">
+    <div class="mat-display-1">Form</div>
+
+    <mat-divider></mat-divider>
+
+    <br />
+
+    <div class="col-md-12 flex">
+      <mat-card>
+        <form
+          class="example-form"
+          [formGroup]="myForm"
+          (ngSubmit)="onSubmit(myForm)"
+        >
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Full Name</mat-label>
+            <input matInput type="text" formControlName="name" />
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              matInput
+              formControlName="email"
+              placeholder="Ex. pat@example.com"
+            />
+            <mat-error
+              *ngIf="
+                myForm.get('email')?.invalid &&
+                (myForm.get('email')?.dirty || myForm.get('email')?.touched)
+              "
+            >
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="myForm.get('email')?.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Countries</mat-label>
+            <mat-select
+              name="country"
+              formControlName="countryDropdown"
+              (selectionChange)="selectedCountry($event.value)"
+            >
+              <mat-option *ngFor="let country of countries" [value]="country">
+                {{ country.country }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>States</mat-label>
+            <mat-select
+              formControlName="stateDropdown"
+              name="states"
+              (selectionChange)="selectedState($event.value)"
+            >
+              <mat-option *ngFor="let state of stateList" [value]="state">
+                {{ state }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="myForm.invalid"
+          >
+            Submit
+          </button>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+
+  <br />
+
+  <mat-divider></mat-divider>
+
+  <!-- <div class="row row-margin">
+
+        <div>
+            Full Name : {{myForm.value.name}}
+        </div>
+
+        <div>
+            Email : {{myForm.value.email}}
+        </div>
+
+        <div>
+            Selected Country Name : {{selectedCountryName}}
+        </div>
+
+        <div>
+            Selected State Name : {{selectedStateName}}
+        </div>
+    </div> -->
+
+  <br />
+
+  <button mat-raised-button color="primary">
+    <a class="nav-link" href="#" [routerLink]="['/next']">Next</a>
+  </button>
+</div>

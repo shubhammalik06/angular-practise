@@ -1,0 +1,56 @@
+<div>
+    Form Example
+</div>
+
+<br />
+
+<div role="form" id="send-comment" aria-label="Fill the form">
+    <!-- <label aria-label="Enter the username" for="username">Username</label>
+    <input id="username" name="username" type="text" />
+
+    <br />
+
+    <label for="email">Email</label>
+
+    <input id="email" name="email" type="text" />
+
+    <br />
+
+    <label for="comment">Comment</label>
+    <textarea aria-description="Enter the comments" id="comment" name="comment"></textarea>
+
+    <br /> -->
+
+    <section [formGroup]="updateForm">
+        <div class="col-lg-6" *ngFor="let keyArray of keyArray">
+            <mat-form-field>
+                <input type="text" [formControlName]="keyArray.key" matInput [placeholder]="keyArray.name" />
+
+
+            </mat-form-field>
+        </div>
+
+        <section class="example-section" [formGroup]="toppings">
+            <h4>Select your toppings:</h4>
+            <p>
+                <mat-checkbox formControlName="pepperoni" (change)="updateState()">Pepperoni</mat-checkbox>
+            </p>
+            <p>
+                <mat-checkbox formControlName="extracheese">Extra Cheese</mat-checkbox>
+            </p>
+            <p>
+                <mat-checkbox formControlName="mushroom">Mushroom</mat-checkbox>
+            </p>
+        </section>
+
+        <div *ngIf="showInput">
+            <label>Enter text</label>
+            <input type="text" placeholder="enter input" >
+        </div>
+
+        <section class="example-section" [formGroup]="toppings">
+            <h4>You chose:</h4>
+            {{toppings.value | json}}
+        </section>
+    </section>
+</div>
