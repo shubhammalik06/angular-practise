@@ -11,6 +11,12 @@ export class HomeComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   showInput: boolean = false;
+  
+  toppingsGroup: Record<string, boolean> = {
+    pepperoni: false,
+    extracheese: false,
+    mushroom: false,
+  }
 
   jsonArray: any = [{}];
   formString!: string;
@@ -65,17 +71,15 @@ export class HomeComponent implements OnInit {
     // this.updateForm = this.formBuilder.group(this.jsonArray);
   }
 
-  toppings = this.formBuilder.group({
-    pepperoni: false,
-    extracheese: false,
-    mushroom: false,
-  });
+  toppings = this.formBuilder.group(this.toppingsGroup);
 
-  updateState() {
-    if(this.showInput){
-      this.showInput = false
-    }else{
-      this.showInput = true
+  updateState(event: any) {
+    const { source, checked } = event;
+
+    if (source) {
+      const { name } = source;
+
+      this.toppingsGroup[name] = checked
     }
   }
 
